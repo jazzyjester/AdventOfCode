@@ -5,13 +5,9 @@ import Base2023
 class Level1 : Base2023(1) {
 
     private fun calibrationLineNumber(line: String): Int {
-        val firstChar = line.firstOrNull() { char -> char.isDigit() }
-        val lastChar = line.lastOrNull() { char -> char.isDigit() }
-        return if (firstChar != null && lastChar != null) {
-            (firstChar.toString() + lastChar.toString()).toInt()
-        } else {
-            0
-        }
+        val firstChar = line.first { char -> char.isDigit() }
+        val lastChar = line.last { char -> char.isDigit() }
+        return (firstChar.toString() + lastChar.toString()).toInt()
     }
 
     override fun part1() {
@@ -92,6 +88,4 @@ class Level1 : Base2023(1) {
         }
         println("Sum All: $total")
     }
-
-
 }
