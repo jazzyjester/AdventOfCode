@@ -1,0 +1,25 @@
+# Gradle files
+.gradle/
+build/
+
+# Kotlin specific
+*.class
+*.jar
+*.war
+*.ear
+*.db
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+out/
+
+# Android specific (if applicable)
+local.properties
+*.apk
+*.ap_
+captures/
+
+# OS generated files
+.DS_Store
+Thumbs.db
