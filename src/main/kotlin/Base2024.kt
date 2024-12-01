@@ -1,0 +1,1 @@
+abstract class Base2024(private val number: Int) : BaseLevel(2024, number)
