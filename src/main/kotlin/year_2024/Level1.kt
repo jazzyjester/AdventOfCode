@@ -5,35 +5,25 @@ import kotlin.math.abs
 
 class Level1 : Base2024(1) {
     override fun part1() {
-        val first: MutableList<Int> = mutableListOf()
-        val second: MutableList<Int> = mutableListOf()
+        val (first, second) = lines.map { line ->
+            line.substringBefore(" ").toInt() to
+                    line.substringAfterLast(" ").toInt()
+        }.unzip()
 
-        lines.forEach { line ->
-            val splitted = line.split(" ").filter { it.isNotEmpty() }
-            first.add(splitted[0].trim().toInt())
-            second.add(splitted[1].trim().toInt())
+
+        val distanceSum = first.sorted().zip(second.sorted()).sumOf { (one, two) ->
+            abs(one - two)
         }
-
-        first.sort()
-        second.sort()
-
-        val distanceSum = first.mapIndexed { index, firstItem ->
-            abs(firstItem - second[index])
-        }.sum()
 
         println("Distance Sum = $distanceSum")
 
     }
 
     override fun part2() {
-        val first: MutableList<Int> = mutableListOf()
-        val second: MutableList<Int> = mutableListOf()
-
-        lines.forEach { line ->
-            val splitted = line.split(" ").filter { it.isNotEmpty() }
-            first.add(splitted[0].trim().toInt())
-            second.add(splitted[1].trim().toInt())
-        }
+        val (first, second) = lines.map { line ->
+            line.substringBefore(" ").toInt() to
+                    line.substringAfterLast(" ").toInt()
+        }.unzip()
 
         val countMap = second.groupingBy { it }.eachCount()
 
