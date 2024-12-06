@@ -73,8 +73,41 @@ class Level4 : Base2024(4) {
         println("$XMAS appears ${rightLeft + upDown + validSetCount} times !")
     }
 
+    data class Point(val x: Int, val y: Int)
+
     override fun part2() {
+
         // A is the middle, need to find all the unique positions of A
         // and check around the M & S letters
+        val points: MutableSet<Point> = mutableSetOf()
+        lines.forEachIndexed { lineIndex, line ->
+            line.forEachIndexed { index, char ->
+                if (char == 'A') {
+                    points.add(
+                        Point(
+                            x = index,
+                            y = lineIndex
+                        )
+                    )
+                }
+            }
+        }
+
+        val updated = points.filter { point ->
+            val x = point.x
+            val y = point.y
+            if (x - 1 >= 0 && x + 1 < lines.size && y - 1 >= 0 && y + 1 < lines.size) {
+                ((lines[y - 1][x - 1] == 'M' && lines[y + 1][x + 1] == 'S') ||
+                        ((lines[y - 1][x - 1] == 'S' && lines[y + 1][x + 1] == 'M')))
+                        &&
+                        ((lines[y - 1][x + 1] == 'M' && lines[y + 1][x - 1] == 'S') ||
+                                ((lines[y - 1][x + 1] == 'S' && lines[y + 1][x - 1] == 'M')))
+
+            } else {
+                false
+            }
+        }
+
+        println("X-MAS count is " + updated.size)
     }
 }
