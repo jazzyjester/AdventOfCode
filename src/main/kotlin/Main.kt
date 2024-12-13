@@ -1,6 +1,6 @@
 fun main(args: Array<String>) {
 
-    year_2024.Level8().solve()
+    year_2024.Level9().solve()
 
 
 }
