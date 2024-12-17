@@ -105,6 +105,17 @@ class Level10 : Base2024(10) {
     }
 
     override fun part2() {
+        val findAllTrailHeads = findAllTrailHeads(lines)
+        val sumOfTrailHeads = findAllTrailHeads.sumOf { headNode ->
 
+            val paths = findPaths(headNode.position, 0, lines)
+                .filter { it.size == 10 }
+
+            val group = paths.groupBy { it.first() }
+            println(group[group.keys.first()]?.size)
+            group[group.keys.first()]?.size ?: 0
+        }
+
+        println("Sum of trail heads is $sumOfTrailHeads")
     }
 }
